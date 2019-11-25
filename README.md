@@ -1,6 +1,6 @@
 # telcos-simulacion-client-php
 
-Carga de cuentas de personas físicas (entorno de simulación).
+Presenta los creditos de la persona con servicios con domicilio asociado de: telefonía celular; televisión de paga; y, telefonía local y de larga distancia (entorno de simulación).
 
 ## Requisitos
 
