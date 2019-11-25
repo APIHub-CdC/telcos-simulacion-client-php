@@ -52,144 +52,68 @@ Es importante contar con el setUp() que se encargará de inicializar la url. Mod
 public function setUp()
 {
     $handler = \GuzzleHttp\HandlerStack::create();
-    $config = new \ReportarEnLineaSimulacion\Client\Configuration();
+    $config = new \TelcosSimulacion\Client\Configuration();
     $config->setHost('the_url');
 
     $client = new \GuzzleHttp\Client(['handler' => $handler, 'verify' => false]);
-    $this->apiInstance = new \ReportarEnLineaSimulacion\Client\Api\CargaDeCuentasDePersonasFsicasApi($client,$config);    
-}    
+    $this->apiInstance = new \TelcosSimulacion\Client\Api\TelcosSimulacionApi($client,$config);
+}  
 ```
 ```php
 
 <?php
 /**
-* Este es el método que se será ejecutado en la prueba ubicado en path/to/repository/test/Api/CargaDeCuentasDePersonasFsicasApiTest.php 
+* Este es el método que se será ejecutado en la prueba ubicado en path/to/repository/test/Api/TelcosSimulacionApiTest.php 
 
 */
-public function testReportarEnLineaSimulacion()
+public function testGetReporte()
 {
     $x_api_key = "your_api_key";
 
-    $requestNombre = new \ReportarEnLineaSimulacion\Client\Model\Nombre();
-    $requestNombre->setApellidoPaterno("PATERNO");
-    $requestNombre->setApellidoMaterno("MATERNO");
-    $requestNombre->setApellidoAdicional(null);
-    $requestNombre->setNombres("NOMBRE");
-    $requestNombre->setFechaNacimiento("YYYYMMDD");
-    $requestNombre->setRfc("PAPN860627");
-    $requestNombre->setCurp("PAPN860627MOCNSB02");
-    $requestNombre->setNumeroSeguridadSocial(null);
-    $requestNombre->setNacionalidad("MX");
-    $requestNombre->setResidencia("1");
-    $requestNombre->setNumeroLicenciaConducir(null);
-    $requestNombre->setEstadoCivil("S");
-    $requestNombre->setSexo("F");
-    $requestNombre->setClaveElectorIfe(null);
-    $requestNombre->setNumeroDependientes("0");
-    $requestNombre->setFechaDefuncion("YYYYMMDD");
-    $requestNombre->setTipoPersona("PF");
-    $requestNombre->setIndicadorDefuncion("1");
+    $requestDomicilio = new \TelcosSimulacion\Client\Model\DomicilioPeticion();
+    $requestEstado = new \TelcosSimulacion\Client\Model\CatalogoEstados();
+    $requestTipoDom = new \TelcosSimulacion\Client\Model\CatalogoTipoDomicilio();
+    $requestTipoAsent = new \TelcosSimulacion\Client\Model\CatalogoTipoAsentamiento();
 
-    $requestDomicilio = new \ReportarEnLineaSimulacion\Client\Model\Domicilio();
-    $requestDomicilio->setDireccion("CONOCIDA S/N");
-    $requestDomicilio->setColoniaPoblacion("CONOCIDA");
-    $requestDomicilio->setDelegacionMunicipio("MUNICIPIO");
-    $requestDomicilio->setCiudad("CIUDAD");
-    $requestDomicilio->setEstado("MEX");
-    $requestDomicilio->setEstadoExtranjero(null);
-    $requestDomicilio->setCp("55010");
-    $requestDomicilio->setFechaResidencia("YYYYMMDD");
-    $requestDomicilio->setNumeroCelular(null);
+    $requestDomicilio->setDireccion(null);
+    $requestDomicilio->setColonia(null);
+    $requestDomicilio->setMunicipio(null);
+    $requestDomicilio->setCiudad(null);
+    $requestDomicilio->setEstado($requestEstado::CDMX);
+    $requestDomicilio->setCodigoPostal(null);
+    $requestDomicilio->setFechaResidencia(null);
     $requestDomicilio->setNumeroTelefono(null);
-    $requestDomicilio->setExtension(null);
-    $requestDomicilio->setFax(null);
-    $requestDomicilio->setTipoDomicilio("C");
-    $requestDomicilio->setTipoAsentamiento("2");
-    $requestDomicilio->setOrigenDomicilio("2");
+    $requestDomicilio->setTipoDomicilio($requestTipoDom::O);
+    $requestDomicilio->setTipoAsentamiento($requestTipoAsent::_0);
 
-    $requestEmpleo = new \ReportarEnLineaSimulacion\Client\Model\Empleo();
-    $requestEmpleo->setNombreEmpresa("VTA DE PRODUCTOS");
-    $requestEmpleo->setDireccion("CONOCIDA S/N");
-    $requestEmpleo->setColoniaPoblacion("CONOCIDA");
-    $requestEmpleo->setDelegacionMunicipio("MUNICIPIO");
-    $requestEmpleo->setCiudad("CIUDAD");
-    $requestEmpleo->setEstado("MX");
-    $requestEmpleo->setCp("55010");
-    $requestEmpleo->setNumeroTelefono(null);
-    $requestEmpleo->setExtension(null);
-    $requestEmpleo->setFax(null);
-    $requestEmpleo->setPuesto(null);
-    $requestEmpleo->setFechaContratacion("YYYYMMDD");
-    $requestEmpleo->setClaveMoneda("MX");
-    $requestEmpleo->setSalarioMensual("5600");
-    $requestEmpleo->setFechaUltimoDiaEmpleo("YYYYMMDD");
-    $requestEmpleo->setFechaVerificacionEmpleo("YYYYMMDD");
-    $requestEmpleo->setOrigenRazonSocialDomicilio("2");
+    $requestPersona = new \TelcosSimulacion\Client\Model\PersonaPeticion();
+    $requestResidencia = new \TelcosSimulacion\Client\Model\CatalogoResidencia();
+    $requestEdoCivil = new \TelcosSimulacion\Client\Model\CatalogoEstadoCivil();
+    $requestSexo = new \TelcosSimulacion\Client\Model\CatalogoSexo();
+    
+    $requestPersona->setPrimerNombre("NOMBRE");
+    $requestPersona->setSegundoNombre(null);
+    $requestPersona->setApellidoPaterno("PATERNO");
+    $requestPersona->setApellidoMaterno("MATERNO");
+    $requestPersona->setApellidoAdicional(null);
+    $requestPersona->setFechaNacimiento("27-06-1986");
+    $requestPersona->setRfc(null);
+    $requestPersona->setCurp(null);
+    $requestPersona->setNumeroSeguridadSocial(null);
+    $requestPersona->setNacionalidad(null);
+    $requestPersona->setResidencia($requestResidencia::_1);
+    $requestPersona->setEstadoCivil($requestEdoCivil::S);
+    $requestPersona->setSexo($requestSexo::M);
+    $requestPersona->setClaveElector(null);
+    $requestPersona->setNumeroDependientes(null);
+    $requestPersona->setFechaDefuncion(null);
+    $requestPersona->setDomicilio($requestDomicilio);        
 
-    $requestCuenta = new \ReportarEnLineaSimulacion\Client\Model\Cuenta();
-    $requestCuenta->setClaveActualOtorgante("0000080008");
-    $requestCuenta->setNombreOtorgante("OTORGANTE");
-    $requestCuenta->setCuentaActual("TCDC000001");
-    $requestCuenta->setTipoResponsabilidad("O");
-    $requestCuenta->setTipoCuenta("F");
-    $requestCuenta->setTipoContrato("BC");
-    $requestCuenta->setClaveUnidadMonetaria("MX");
-    $requestCuenta->setValorActivoValuacion(null);
-    $requestCuenta->setNumeroPagos("17");
-    $requestCuenta->setFrecuenciaPagos("S");
-    $requestCuenta->setMontoPagar("0");
-    $requestCuenta->setFechaAperturaCuenta("YYYYMMDD");
-    $requestCuenta->setFechaUltimoPago("YYYYMMDD");
-    $requestCuenta->setFechaUltimaCompra("YYYYMMDD");
-    $requestCuenta->setFechaCierreCuenta("YYYYMMDD");
-    $requestCuenta->setFechaCorte("YYYYMMDD");
-    $requestCuenta->setGarantia(null);
-    $requestCuenta->setCreditoMaximo("10000");
-    $requestCuenta->setSaldoActual("0");
-    $requestCuenta->setLimiteCredito("0");
-    $requestCuenta->setSaldoVencido("0");
-    $requestCuenta->setNumeroPagosVencidos("2");
-    $requestCuenta->setPagoActual(" V");
-    $requestCuenta->setHistoricoPagos(null);
-    $requestCuenta->setClavePrevencion("1");
-    $requestCuenta->setTotalPagosreportados("0");
-    $requestCuenta->setClaveAnteriorOtorgante(null);
-    $requestCuenta->setNombreAnteriorOtorgante(null);
-    $requestCuenta->setNumeroCuentaAnterior(null);
-    $requestCuenta->setFechaPrimerIncumplimiento("YYYYMMDD");
-    $requestCuenta->setSaldoInsoluto(null);
-    $requestCuenta->setMontoUltimoPago(null);
-    $requestCuenta->setFechaIngresoCarteraVencida("YYYYMMDD");
-    $requestCuenta->setMontoCorrespondienteIntereses("2");
-    $requestCuenta->setFormaPagoActualIntereses("2");
-    $requestCuenta->setDiasVencimiento("3");
-    $requestCuenta->setPlazoMeses(null);
-    $requestCuenta->setMontoCreditoOriginacion(null);
-    $requestCuenta->setCorreoElectronicoConsumidor(null);
-    $requestCuenta->setEstatusCan("01");
-    $requestCuenta->setOrdenPrelacionOrigen("01");
-    $requestCuenta->setOrdenPrelacionActual("01");
-    $requestCuenta->setFechaAperturaCan("YYYYMMDD");
-    $requestCuenta->setFechaCancelacionCan("null");    
-
-    $requestPersona = new \ReportarEnLineaSimulacion\Client\Model\Persona();
-    $requestPersona->setNombre($requestNombre);
-    $requestPersona->setDomicilio($requestDomicilio);
-    $requestPersona->setEmpleo($requestEmpleo);
-    $requestPersona->setCuenta($requestCuenta);
-
-    $requestEncabezado = new \ReportarEnLineaSimulacion\Client\Model\Encabezado();
-    $requestEncabezado->setNombreOtorgante("OTORGANTE");
-    $requestEncabezado->setClaveOtorgante("100000");
-
-    $request = new \ReportarEnLineaSimulacion\Client\Model\CargasPFRegistrarRequest();
-    $request->setEncabezado($requestEncabezado);
-    $request->setPersona($requestPersona);
     try {
-        $result = $this->apiInstance->registrar($x_api_key, $request);
+        $result = $this->apiInstance->getReporte($x_api_key, $requestPersona);
         print_r($result);
     } catch (Exception $e) {
-        echo 'Exception when calling CargaDeCuentasDePersonasFsicasApi->registrar: ', $e->getMessage(), PHP_EOL;
+        echo 'Exception when calling TelcosSimulacionApi->getReporte: ', $e->getMessage(), PHP_EOL;
     }
 }
 ?>
