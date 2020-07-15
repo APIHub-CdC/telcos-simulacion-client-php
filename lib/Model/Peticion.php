@@ -5,28 +5,20 @@ namespace TelcosSimulacion\Client\Model;
 use \ArrayAccess;
 use \TelcosSimulacion\Client\ObjectSerializer;
 
-class Respuesta implements ModelInterface, ArrayAccess
+class Peticion implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $apihubModelName = 'Respuesta';
+    protected static $apihubModelName = 'Peticion';
     
     protected static $apihubTypes = [
         'folio_otorgante' => 'string',
-        'folio_consulta' => 'string',
-        'observacion' => 'string',
-        'persona' => '\TelcosSimulacion\Client\Model\PersonaRespuesta',
-        'domicilios' => '\TelcosSimulacion\Client\Model\DomicilioRespuesta[]',
-        'servicios' => '\TelcosSimulacion\Client\Model\Servicios'
+        'persona' => '\TelcosSimulacion\Client\Model\PersonaPeticion'
     ];
     
     protected static $apihubFormats = [
         'folio_otorgante' => null,
-        'folio_consulta' => null,
-        'observacion' => null,
-        'persona' => null,
-        'domicilios' => null,
-        'servicios' => null
+        'persona' => null
     ];
     
     public static function apihubTypes()
@@ -41,29 +33,17 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $attributeMap = [
         'folio_otorgante' => 'folioOtorgante',
-        'folio_consulta' => 'folioConsulta',
-        'observacion' => 'observacion',
-        'persona' => 'persona',
-        'domicilios' => 'domicilios',
-        'servicios' => 'servicios'
+        'persona' => 'persona'
     ];
     
     protected static $setters = [
         'folio_otorgante' => 'setFolioOtorgante',
-        'folio_consulta' => 'setFolioConsulta',
-        'observacion' => 'setObservacion',
-        'persona' => 'setPersona',
-        'domicilios' => 'setDomicilios',
-        'servicios' => 'setServicios'
+        'persona' => 'setPersona'
     ];
     
     protected static $getters = [
         'folio_otorgante' => 'getFolioOtorgante',
-        'folio_consulta' => 'getFolioConsulta',
-        'observacion' => 'getObservacion',
-        'persona' => 'getPersona',
-        'domicilios' => 'getDomicilios',
-        'servicios' => 'getServicios'
+        'persona' => 'getPersona'
     ];
     
     public static function attributeMap()
@@ -93,16 +73,15 @@ class Respuesta implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['folio_otorgante'] = isset($data['folio_otorgante']) ? $data['folio_otorgante'] : null;
-        $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
-        $this->container['observacion'] = isset($data['observacion']) ? $data['observacion'] : null;
         $this->container['persona'] = isset($data['persona']) ? $data['persona'] : null;
-        $this->container['domicilios'] = isset($data['domicilios']) ? $data['domicilios'] : null;
-        $this->container['servicios'] = isset($data['servicios']) ? $data['servicios'] : null;
     }
     
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['folio_otorgante'] === null) {
+            $invalidProperties[] = "'folio_otorgante' can't be null";
+        }
         return $invalidProperties;
     }
     
@@ -122,28 +101,6 @@ class Respuesta implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getFolioConsulta()
-    {
-        return $this->container['folio_consulta'];
-    }
-    
-    public function setFolioConsulta($folio_consulta)
-    {
-        $this->container['folio_consulta'] = $folio_consulta;
-        return $this;
-    }
-    
-    public function getObservacion()
-    {
-        return $this->container['observacion'];
-    }
-    
-    public function setObservacion($observacion)
-    {
-        $this->container['observacion'] = $observacion;
-        return $this;
-    }
-    
     public function getPersona()
     {
         return $this->container['persona'];
@@ -152,28 +109,6 @@ class Respuesta implements ModelInterface, ArrayAccess
     public function setPersona($persona)
     {
         $this->container['persona'] = $persona;
-        return $this;
-    }
-    
-    public function getDomicilios()
-    {
-        return $this->container['domicilios'];
-    }
-    
-    public function setDomicilios($domicilios)
-    {
-        $this->container['domicilios'] = $domicilios;
-        return $this;
-    }
-    
-    public function getServicios()
-    {
-        return $this->container['servicios'];
-    }
-    
-    public function setServicios($servicios)
-    {
-        $this->container['servicios'] = $servicios;
         return $this;
     }
     

@@ -195,7 +195,7 @@ class TelcosSimulacionApi
                 'Missing the required parameter $request when calling getReporte'
             );
         }
-        $resourcePath = '/';
+        $resourcePath = '';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

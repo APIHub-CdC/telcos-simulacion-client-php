@@ -9,24 +9,24 @@ class TelevisionPaga implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $TelcosSimulacionModelName = 'TelevisionPaga';
+    protected static $apihubModelName = 'TelevisionPaga';
     
-    protected static $TelcosSimulacionTypes = [
+    protected static $apihubTypes = [
         
     ];
     
-    protected static $TelcosSimulacionFormats = [
+    protected static $apihubFormats = [
         
     ];
     
-    public static function TelcosSimulacionTypes()
+    public static function apihubTypes()
     {
-        return self::$TelcosSimulacionTypes;
+        return self::$apihubTypes;
     }
     
-    public static function TelcosSimulacionFormats()
+    public static function apihubFormats()
     {
-        return self::$TelcosSimulacionFormats;
+        return self::$apihubFormats;
     }
     
     protected static $attributeMap = [
@@ -58,7 +58,7 @@ class TelevisionPaga implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$TelcosSimulacionModelName;
+        return self::$apihubModelName;
     }
     
     
