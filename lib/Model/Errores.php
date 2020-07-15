@@ -9,35 +9,40 @@ class Errores implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $TelcosSimulacionModelName = 'Errores';
+    protected static $apihubModelName = 'Errores';
     
-    protected static $TelcosSimulacionTypes = [
+    protected static $apihubTypes = [
+        'folio_consulta' => 'string',
         'errores' => '\TelcosSimulacion\Client\Model\Error[]'
     ];
     
-    protected static $TelcosSimulacionFormats = [
+    protected static $apihubFormats = [
+        'folio_consulta' => null,
         'errores' => null
     ];
     
-    public static function TelcosSimulacionTypes()
+    public static function apihubTypes()
     {
-        return self::$TelcosSimulacionTypes;
+        return self::$apihubTypes;
     }
     
-    public static function TelcosSimulacionFormats()
+    public static function apihubFormats()
     {
-        return self::$TelcosSimulacionFormats;
+        return self::$apihubFormats;
     }
     
     protected static $attributeMap = [
+        'folio_consulta' => 'folioConsulta',
         'errores' => 'errores'
     ];
     
     protected static $setters = [
+        'folio_consulta' => 'setFolioConsulta',
         'errores' => 'setErrores'
     ];
     
     protected static $getters = [
+        'folio_consulta' => 'getFolioConsulta',
         'errores' => 'getErrores'
     ];
     
@@ -58,7 +63,7 @@ class Errores implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$TelcosSimulacionModelName;
+        return self::$apihubModelName;
     }
     
     
@@ -67,6 +72,7 @@ class Errores implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
+        $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
         $this->container['errores'] = isset($data['errores']) ? $data['errores'] : null;
     }
     
@@ -79,6 +85,17 @@ class Errores implements ModelInterface, ArrayAccess
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
+    }
+    
+    public function getFolioConsulta()
+    {
+        return $this->container['folio_consulta'];
+    }
+    
+    public function setFolioConsulta($folio_consulta)
+    {
+        $this->container['folio_consulta'] = $folio_consulta;
+        return $this;
     }
     
     public function getErrores()

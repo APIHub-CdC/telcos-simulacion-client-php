@@ -7,9 +7,9 @@ interface ModelInterface
     
     public function getModelName();
     
-    public static function TelcosSimulacionTypes();
+    public static function apihubTypes();
     
-    public static function TelcosSimulacionFormats();
+    public static function apihubFormats();
     
     public static function attributeMap();
     

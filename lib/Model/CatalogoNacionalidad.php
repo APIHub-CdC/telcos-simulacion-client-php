@@ -5,11 +5,11 @@ namespace TelcosSimulacion\Client\Model;
 use \ArrayAccess;
 use \TelcosSimulacion\Client\ObjectSerializer;
 
-class TelefoniaLocalDistancia implements ModelInterface, ArrayAccess
+class CatalogoNacionalidad implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $apihubModelName = 'TelefoniaLocalDistancia';
+    protected static $apihubModelName = 'CatalogoNacionalidad';
     
     protected static $apihubTypes = [
         
@@ -71,7 +71,7 @@ class TelefoniaLocalDistancia implements ModelInterface, ArrayAccess
     
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
         return $invalidProperties;
     }
     

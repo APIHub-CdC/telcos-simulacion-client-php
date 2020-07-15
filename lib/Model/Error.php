@@ -9,26 +9,26 @@ class Error implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $TelcosSimulacionModelName = 'Error';
+    protected static $apihubModelName = 'Error';
     
-    protected static $TelcosSimulacionTypes = [
+    protected static $apihubTypes = [
         'codigo' => 'string',
         'mensaje' => 'string'
     ];
     
-    protected static $TelcosSimulacionFormats = [
+    protected static $apihubFormats = [
         'codigo' => null,
         'mensaje' => null
     ];
     
-    public static function TelcosSimulacionTypes()
+    public static function apihubTypes()
     {
-        return self::$TelcosSimulacionTypes;
+        return self::$apihubTypes;
     }
     
-    public static function TelcosSimulacionFormats()
+    public static function apihubFormats()
     {
-        return self::$TelcosSimulacionFormats;
+        return self::$apihubFormats;
     }
     
     protected static $attributeMap = [
@@ -63,7 +63,7 @@ class Error implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$TelcosSimulacionModelName;
+        return self::$apihubModelName;
     }
     
     

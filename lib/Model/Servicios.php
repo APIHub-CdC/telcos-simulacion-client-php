@@ -9,28 +9,28 @@ class Servicios implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $TelcosSimulacionModelName = 'Servicios';
+    protected static $apihubModelName = 'Servicios';
     
-    protected static $TelcosSimulacionTypes = [
+    protected static $apihubTypes = [
         'telefonia_celular' => '\TelcosSimulacion\Client\Model\TelefoniaCelular',
         'television_paga' => '\TelcosSimulacion\Client\Model\TelevisionPaga',
         'telefonia_local_distancia' => '\TelcosSimulacion\Client\Model\TelefoniaLocalDistancia'
     ];
     
-    protected static $TelcosSimulacionFormats = [
+    protected static $apihubFormats = [
         'telefonia_celular' => null,
         'television_paga' => null,
         'telefonia_local_distancia' => null
     ];
     
-    public static function TelcosSimulacionTypes()
+    public static function apihubTypes()
     {
-        return self::$TelcosSimulacionTypes;
+        return self::$apihubTypes;
     }
     
-    public static function TelcosSimulacionFormats()
+    public static function apihubFormats()
     {
-        return self::$TelcosSimulacionFormats;
+        return self::$apihubFormats;
     }
     
     protected static $attributeMap = [
@@ -68,7 +68,7 @@ class Servicios implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$TelcosSimulacionModelName;
+        return self::$apihubModelName;
     }
     
     
