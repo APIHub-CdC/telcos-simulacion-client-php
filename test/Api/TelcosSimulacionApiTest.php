@@ -2,9 +2,7 @@
 
 namespace TelcosSimulacion\Client;
 
-use \TelcosSimulacion\Client\Configuration;
-use \TelcosSimulacion\Client\ApiException;
-use \TelcosSimulacion\Client\ObjectSerializer;
+# use \TelcosSimulacion\Client\ApiException;
 
 class TelcosSimulacionApiTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +13,7 @@ class TelcosSimulacionApiTest extends \PHPUnit_Framework_TestCase
         $config = new \TelcosSimulacion\Client\Configuration();
         $config->setHost('the_url');
 
-        $client = new \GuzzleHttp\Client(['handler' => $handler, 'verify' => false]);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
         $this->apiInstance = new \TelcosSimulacion\Client\Api\TelcosSimulacionApi($client,$config);
     }
     
@@ -23,47 +21,50 @@ class TelcosSimulacionApiTest extends \PHPUnit_Framework_TestCase
     {
         $x_api_key = "your_api_key";
 
-        $requestDomicilio = new \TelcosSimulacion\Client\Model\DomicilioPeticion();
-        $requestEstado = new \TelcosSimulacion\Client\Model\CatalogoEstados();
-        $requestTipoDom = new \TelcosSimulacion\Client\Model\CatalogoTipoDomicilio();
-        $requestTipoAsent = new \TelcosSimulacion\Client\Model\CatalogoTipoAsentamiento();
+        $domicilio = new \TelcosSimulacion\Client\Model\DomicilioPeticion();
+        $estado = new \TelcosSimulacion\Client\Model\CatalogoEstados();
+        $tipoDom = new \TelcosSimulacion\Client\Model\CatalogoTipoDomicilio();
+        $tipoAsent = new \TelcosSimulacion\Client\Model\CatalogoTipoAsentamiento();
 
-        $requestDomicilio->setDireccion(null);
-        $requestDomicilio->setColonia(null);
-        $requestDomicilio->setMunicipio(null);
-        $requestDomicilio->setCiudad(null);
-        $requestDomicilio->setEstado($requestEstado::CDMX);
-        $requestDomicilio->setCodigoPostal(null);
-        $requestDomicilio->setFechaResidencia(null);
-        $requestDomicilio->setNumeroTelefono(null);
-        $requestDomicilio->setTipoDomicilio($requestTipoDom::O);
-        $requestDomicilio->setTipoAsentamiento($requestTipoAsent::_0);
+        $domicilio->setDireccion(null);
+        $domicilio->setColoniaPoblacion(null);
+        $domicilio->setDelegacionMunicipio(null);
+        $domicilio->setCiudad(null);
+        $domicilio->setEstado($estado::CDMX);
+        $domicilio->setCP(null);
+        $domicilio->setFechaResidencia(null);
+        $domicilio->setNumeroTelefono(null);
+        $domicilio->setTipoDomicilio($tipoDom::O);
+        $domicilio->setTipoAsentamiento($tipoAsent::_0);
 
-        $requestPersona = new \TelcosSimulacion\Client\Model\PersonaPeticion();
-        $requestResidencia = new \TelcosSimulacion\Client\Model\CatalogoResidencia();
-        $requestEdoCivil = new \TelcosSimulacion\Client\Model\CatalogoEstadoCivil();
-        $requestSexo = new \TelcosSimulacion\Client\Model\CatalogoSexo();
+        $request = new \TelcosSimulacion\Client\Model\Peticion();
+        $persona = new \TelcosSimulacion\Client\Model\PersonaPeticion();
+        $residencia = new \TelcosSimulacion\Client\Model\CatalogoResidencia();
+        $edoCivil = new \TelcosSimulacion\Client\Model\CatalogoEstadoCivil();
+        $sexo = new \TelcosSimulacion\Client\Model\CatalogoSexo();
         
-        $requestPersona->setPrimerNombre("NOMBRE");
-        $requestPersona->setSegundoNombre(null);
-        $requestPersona->setApellidoPaterno("PATERNO");
-        $requestPersona->setApellidoMaterno("MATERNO");
-        $requestPersona->setApellidoAdicional(null);
-        $requestPersona->setFechaNacimiento("27-06-1986");
-        $requestPersona->setRfc(null);
-        $requestPersona->setCurp(null);
-        $requestPersona->setNumeroSeguridadSocial(null);
-        $requestPersona->setNacionalidad(null);
-        $requestPersona->setResidencia($requestResidencia::_1);
-        $requestPersona->setEstadoCivil($requestEdoCivil::S);
-        $requestPersona->setSexo($requestSexo::M);
-        $requestPersona->setClaveElector(null);
-        $requestPersona->setNumeroDependientes(null);
-        $requestPersona->setFechaDefuncion(null);
-        $requestPersona->setDomicilio($requestDomicilio);        
+        $persona->setPrimerNombre("NOMBRE");
+        $persona->setSegundoNombre(null);
+        $persona->setApellidoPaterno("PATERNO");
+        $persona->setApellidoMaterno("MATERNO");
+        $persona->setApellidoAdicional(null);
+        $persona->setFechaNacimiento("1986-06-27");
+        $persona->setRfc(null);
+        $persona->setCurp(null);
+        $persona->setNacionalidad(null);
+        $persona->setResidencia($residencia::_1);
+        $persona->setEstadoCivil($edoCivil::S);
+        $persona->setSexo($sexo::M);
+        $persona->setClaveElectorIfe(null);
+        $persona->setNumeroDependientes(null);
+        $persona->setFechaDefuncion(null);
+        $persona->setDomicilio($domicilio);
+
+        $request->setFolioOtorgante("24124212");
+        $request->setPersona($persona);
 
         try {
-            $result = $this->apiInstance->getReporte($x_api_key, $requestPersona);
+            $result = $this->apiInstance->getReporte($x_api_key, $request);
             print_r($result);
         } catch (Exception $e) {
             echo 'Exception when calling TelcosSimulacionApi->getReporte: ', $e->getMessage(), PHP_EOL;
